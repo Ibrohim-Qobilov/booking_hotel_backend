@@ -1,14 +1,17 @@
-var createError = require('http-errors');
+
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var mongooseHelper = require('./helper/db_helper')
+
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var hotelsRouter = require('./routes/hotels');
+var hotelRouter = require('./routes/hotel');
 
 var app = express();
+
+mongooseHelper();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -21,8 +24,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/hotels', hotelsRouter);
+app.use('/hotel', hotelRouter);
 
 
 // catch 404 and forward to error handler
