@@ -14,6 +14,7 @@ var UserSchema = new Schema({
     expiry: String,
     cvv: Number,
     name: String,
+    login : String
 });
 
 module.exports = mongoose.model('User',UserSchema);
